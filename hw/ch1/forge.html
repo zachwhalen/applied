@@ -1,0 +1,180 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<!--
+The present variation has been hacked by Zach Whalen <zach.whalen@gmail.com>.
+
+
+
+Nick Montfort
+ Original Python program:
+ 8 January 2009, Taroko Gorge National Park, Taiwan and Eva Air Flight 28
+ This JavaScript version, with links:
+ 9 December 2012
+
+Copyright (c) 2012 Nick Montfort <nickm@nickm.com>
+
+Permission to use, copy, modify, and/or distribute this software for any
+purpose with or without fee is hereby granted, provided that the above
+copyright notice and this permission notice appear in all copies.
+
+THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
+WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
+MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY
+SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
+WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
+ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR
+IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
+
+
+-->
+<link href='http://fonts.googleapis.com/css?family=Vast+Shadow|Lobster' rel='stylesheet' type='text/css'>
+<style type="text/css">
+/* <![CDATA[ */
+body {background:  #5d4636 ;
+ color: #fcf7d1;
+ margin: 0 24pt 0 24pt;
+ font-family: Georgia, serif;
+ font-size: 13pt;
+}
+h1 {font-family: 'Vast Shadow',serif;font-weight:normal; text-align:center;}
+h2 {font-family: Lobster; text-align:center;}
+div {
+ height: 16pt;
+}
+a {
+ color: #b0bf8b;
+ text-decoration: none;
+}
+/* ]]> */
+</style>
+<script language="JavaScript" type="text/javascript">
+var t=0;
+var n=0;
+var paths=0;
+var above='water slide,go cart,mini golf,bungee jump,slingshot,Dolly Parton,The Titanic,moccasin,fudge,Comedy Barn,The Park,trail,picture'.split(',');
+var below='Dollywood,waiting,stone,cavern,rock,mountain,novel,dinner show,meal,pancake,barn,outlet mall,house'.split(',');
+var trans='shop,sell,attend,drive,ignore,subsist,aggrandize,range,forge,lodge'.split(',');
+var imper='track,walk,park,return,drive past,visit,enter,patronize,eat,dine';
+imper=imper.split(',');
+var intrans='shop,drive,park,gawk,regret,ignore,admire,pose'.split(',');
+var s='s,'.split(',');
+var texture='asphalt,grass'.split(',');
+function rand_range(max) {
+ return Math.floor(Math.random()*(max+1));
+}
+function choose(array) {
+ return array[rand_range(array.length-1)];
+}
+function path() {
+ var p=rand_range(1);
+ var words=choose(above);
+ if ((words=='forest')&&(rand_range(3)==1)) {
+  words='bears '+choose(trans);
+ } else {
+  words+=s[p]+' '+choose(trans)+s[(p+1)%2];
+ }
+ words+=' the '+choose(below)+choose(s)+'.';
+ return words;
+}
+function site() {
+ var words='';
+ if (rand_range(2)==1) {
+  words+=choose(above);
+ } else {
+  words+=choose(below);
+ }
+ words+='s '+choose(intrans)+'.';
+ return words;
+}
+function cave() {
+ var adjs=('mimicking,'+choose(texture)+',authentic,primitive,down home,rural,impoverished,desparate,ancient').split(',');
+ var target=1+rand_range(3);
+ while (adjs.length>target) {
+  adjs.splice(rand_range(adjs.length),1);
+  }
+ var words='\u00a0\u00a0'+choose(imper)+' the '+adjs.join(' ')+' \u2014';
+ return words;
+}
+function do_line() {
+ var main=document.getElementById('main');
+ if (t<=25) {
+  t+=1;
+ } else {
+  main.removeChild(document.getElementById('main').firstChild);
+ }
+ if (n===0) {
+  text=' ';
+ } else if (n==1) {
+  paths=2+rand_range(2);
+  text=path();
+ } else if (n<paths) {
+  text=site();
+ } else if (n==paths) {
+  text=path();
+ } else if (n==paths+1) {
+  text=' ';
+ } else if (n==paths+2) {
+  text=cave();
+ } else {
+  text=' ';
+  n=0;
+ }
+ n+=1;
+ text=text.substring(0,1).toUpperCase()+text.substring(1,text.length);
+ last=document.createElement('div');
+ last.appendChild(document.createTextNode(text));
+ main.appendChild(last);
+}
+function poem() {
+ setInterval(do_line, 1200);
+
+}</script>
+  <title>Pigeon Forge (after Nick Montfort's Taroko Gorge)</title>
+</head>
+<body onload="poem()">
+  <h1><a href="https://www.google.com/search?q=pigeon+forge+tn&tbm=isch">Pigeon Forge</a></h1>
+  <h2>"Action Packed"</h2>
+<div style="float:right; margin-top:12px; height:60pt">
+<del><a href="taroko_gorge_original.html">Nick Montfort</a></del><br/>
+<del><a href="http://retts.net/tokyogarage.html">Scott Rettberg</a></del><br/>
+<del><a href="http://luckysoap.com/generations/gorge.html">J.R. Carpenter</a></del><br/>
+<del><a href="http://luckysoap.com/generations/whisperwire.html">J.R. Carpenter</a></del><br/>
+<del><a href="http://luckysoap.com/alongthebrinybeach/">J.R. Carpenter</a></del><br/>
+<del><a href="http://talanmemmott.com/drp_web/text_gen/toygarbage/">Talan Memmott</a></del><br/>
+<del><a href="http://exinfoam.wordpress.com/2011/07/18/yoko-engorged/">Eric Snodgrass</a></del><br/>
+<del><a href="http://samplereality.com/elit/takeigeorge.html">Mark Sample</a></del><br/>
+<del><a href="http://polyaesthetics.org/AloneEngaged.html">Maria Engberg</a></del><br/>
+<del><a href="http://www.madelineklink.com/portfolio/fredandgeorge.html">Flourish Klink</a></del><br/>
+<del><a href="http://www.eblong.com/zarf/argot-ogre-ok.html">Andrew Plotkin</a></del><br/>
+<del><a href="http://wintermute.org/brendan/?p=designer-gulch">Brendan Howell</a></del><br/>
+<del><a href="http://mason.gmu.edu/~asylvain/">Adam Sylvain</a></del><br/>
+<del><a href="http://leonardoflores.net/tarokogary">Leonardo Flores</a></del><br/>
+<del><a href="http://alimahzoon.com/html/mp2ab/final2.html">Alireza Mahzoon</a></del><br/>
+<del><a href="http://thefwordsrt.appspot.com/cameltail.html">Sonny Rae Tempest</a></del><br/>
+<del><a href="http://berens.org/kib/elit/tournedo2.html">Kathi Inman Berens</a></del><br/>
+<del><a href="http://helenburgess.com/cheese/index.html">Helen Burgess</a></del><br/>
+<del><a href="http://www.artcalifornia.net/scholars_contemplate.html">Judy Malloy</a></del></br>
+<del><a href="http://mason.gmu.edu/~rbonsal1/DarkSideoftheWall.html">Bob Bonsall</a></del></br>
+<del><a href="http://www.sadiron.com/tacoma-grunge/">Chuck Rybak</a></del></br>
+
+<div>Zach Whalen</div>
+</div>
+<div id="main"></div>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-33196941-2', 'zachwhalen.net');
+  ga('send', 'pageview');
+
+</script>
+</body>
+</html>
+
+
